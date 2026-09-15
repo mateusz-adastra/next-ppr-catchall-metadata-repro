@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import type { ReactNode } from "react";
 
 import { getShellData } from "../shell-data";
@@ -11,11 +12,17 @@ export default async function ShellLayout({
 }: {
   children: ReactNode;
 }) {
+  // Request-time read in the shell, alongside the cached value below. Without
+  // it the route's CDN entry never expires, so the regeneration that triggers
+  // the bug never runs.
+  const store = await cookies();
   const shell = await getShellData();
 
   return (
     <>
-      <header>{shell.label}</header>
+      <header data-session={store.get("session")?.value ?? "none"}>
+        {shell.label}
+      </header>
       {children}
     </>
   );
