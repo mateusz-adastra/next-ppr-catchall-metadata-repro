@@ -86,6 +86,6 @@ prerender/replay key mismatch showing up at build time.
 
 ## Environment
 
-- `next@16.3.1` (Turbopack build), `react@19.2.7`, `react-dom@19.2.7`
+- `next@16.3.2` (Turbopack build), `react@19.2.7`, `react-dom@19.2.7`
 - Node.js v22.19.0
 - Deployed on Vercel; also run locally with `next build && next start` (healthy)
